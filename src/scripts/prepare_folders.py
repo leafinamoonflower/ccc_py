@@ -9,6 +9,7 @@ def main():
         print('Incorrect amount of arguments given. Use: \'python src/scripts/prepare_folders.py <LEVEL>\'')
         
     level: AbstractLevel = find_level(int(arg_list[0]))
+    level.file_access.prepare_folders()
     
 
 if __name__ == '__main__':

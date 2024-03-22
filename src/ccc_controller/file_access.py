@@ -16,9 +16,16 @@ class FileAccess:
         output_dir = self._directory + 'output/'
         os.makedirs(input_dir)
         os.makedirs(output_dir)
-    
-    
-    def _read_file(self, path: str) -> list:
+     
+        
+    def read_file(self, file: int) -> list:
+        if file == 0:
+            path = self._directory + 'input/level' + str(self._level) + '_example.in'
+        elif 0 < file and file < 6:
+            path = self._directory + 'input/level' + str(self._level) + '_' + str(file) + '.in'
+        else:
+            raise Exception("Wrong File-Number")
+        
         if not os.path.exists(path):
             raise FileNotFoundError('File ' + path + ' was not found.')
         open_file = open(path, 'r')
@@ -26,29 +33,16 @@ class FileAccess:
         for each in open_file:
             lines.append(each.strip())
         return lines
-    
         
-    def read_example_file(self) -> list:
-        path = self._directory + 'input/level' + str(self._level) + '_example.in'
-        return self._read_file(path)
-     
+    
+    def save_file(self, file: int, input: list) -> None:
+        if file == 0:
+            path = self._directory + 'output/level' + str(self._level) + '_example.out'
+        elif 0 < file and file < 6:
+            path = self._directory + 'output/level' + str(self._level) + '_' + str(file) + '.out'
+        else:
+            raise Exception("Wrong File-Number")
         
-    def read_singular_file(self, file: int) -> list:
-        path = self._directory + 'input/level' + str(self._level) + '_' + str(file) + '.in'
-        return self._read_file(path)
-    
-    
-    def _save_file(self, path: str, input: list) -> None:
         open_file = open(path, 'a')
         for each in input:
             open_file.write(each + '\n')
-            
-    
-    def save_example_file(self, input: list) -> None:
-        path = self._directory + 'output/level' + str(self._level) + '_example.out'
-        self._save_file(path, input)
-        
-    
-    def save_singular_file(self, file: int, input: list) -> None:
-        path = self._directory + 'output/level' + str(self._level) + '_' + str(file) + '.out'
-        self._save_file(path, input)

@@ -14,9 +14,7 @@ def main():
     
     file: int = int(arg_list[1])
     
-    if file == 0:
-        level.solve_example()
-    elif 0 < file and file < 6:
+    if 0 <= file and file < 6:
         level.solve_singular(file)
     else:
         print('Input for <FILE> was out of bounds.')

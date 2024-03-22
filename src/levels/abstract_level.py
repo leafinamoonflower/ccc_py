@@ -17,15 +17,9 @@ class AbstractLevel(ABC):
     # ----- methods: -----
     
     @abstractmethod
-    def solve_example(self) -> None:
+    def solve_singular(self, file: int) -> None:
         pass
     
-    @abstractmethod
-    def solve_singular(self, file: int) -> list:
-        pass
-    
-    def solve_all(self) -> list:
-        solved_list = list()
+    def solve_all(self) -> None:
         for i in range(1, 6):
-            solved_list.append(self.solve_singular(i))
-        return solved_list
+            self.solve_singular(i)

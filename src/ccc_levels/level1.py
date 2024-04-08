@@ -1,4 +1,4 @@
-from levels.abstract_level import AbstractLevel
+from ccc_levels.abstract_level import AbstractLevel
 
 class Level1(AbstractLevel):
     

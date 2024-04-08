@@ -1,5 +1,5 @@
-from levels.abstract_level import AbstractLevel
-from levels.level1 import Level1
+from ccc_levels.abstract_level import AbstractLevel
+from ccc_levels.level1 import Level1
 
 def find_level(level_num: int) -> AbstractLevel:
     match level_num:

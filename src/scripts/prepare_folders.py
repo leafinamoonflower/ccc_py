@@ -1,7 +1,7 @@
 import sys
 
 from ccc_controller.find_level import find_level
-from levels.abstract_level import AbstractLevel
+from ccc_levels.abstract_level import AbstractLevel
 
 def main():
     arg_list = sys.argv[1:]

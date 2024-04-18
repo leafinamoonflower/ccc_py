@@ -43,6 +43,10 @@ class FileAccess:
         else:
             raise Exception("Wrong File-Number")
         
+        if os.path.exists(path):
+            os.remove(path)
         open_file = open(path, 'a')
-        for each in input:
-            open_file.write(each + '\n')
+        max_length = len(input)
+        for i in range(max_length - 1):
+            open_file.write(input[i] + '\n')
+        open_file.write(input[max_length - 1])

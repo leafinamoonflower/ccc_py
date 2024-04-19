@@ -14,7 +14,7 @@ prepare_folders LEVEL:
 	python3.11 src/scripts/prepare_folders.py {{LEVEL}}
 
 compare_example LEVEL:
-	python3.11 src/scripts/prepare_folders.py {{LEVEL}}
+	python3.11 src/scripts/compare_example.py {{LEVEL}}
 
 solve_example LEVEL:
 	just solve_singular {{LEVEL}} 0

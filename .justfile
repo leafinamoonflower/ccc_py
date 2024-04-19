@@ -2,6 +2,8 @@
 set windows-shell := ["cmd.exe", "/c"]
 set quiet
 
+export PYTHONPATH := "./src"
+
 alias solve := solve_singular
 alias prepare := prepare_folders
 alias prep := prepare_folders

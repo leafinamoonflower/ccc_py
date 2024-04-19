@@ -11,6 +11,9 @@ class Level1(AbstractLevel):
     
     def solve_singular(self, file: int) -> None:
         input_list = self.file_access.read_file(file)
+        
+        # TODO: stub
+        
         self.file_access.save_file(file, input_list)
         
         print('solve_singular() was not implemented yet.')

@@ -48,5 +48,5 @@ class FileAccess:
         open_file = open(path, 'a')
         max_length = len(input)
         for i in range(max_length - 1):
-            open_file.write(input[i] + '\n')
-        open_file.write(input[max_length - 1])
+            open_file.write(str(input[i]) + '\n')
+        open_file.write(str(input[max_length - 1]))

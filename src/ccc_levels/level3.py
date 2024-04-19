@@ -66,17 +66,32 @@ class Level3(AbstractLevel):
                             left = right_cur
                     case _:
                         raise Exception('Something went wrong')
-                    
-            if (up - down + 1) == size[1] and (right - left + 1) == size[0]:
-                current_x = -left
-                current_y = -down
-            else:
-                raise Exception('Something went Wrong again')
+                
+            print('up: ' + str(up) + ' down: ' + str(down) + ' left: ' + str(left) + ' right: ' + str(right))    
+            print('size_x: ' + str(size[0]) + ' size_y: ' + str(size[1]))
+            
+            current_x = -left
+            current_y = -down
             
             lawn = GridAStar()
             lawn.parseFromList(rows)
             
             print('Lawn ' + str(i) + ' start at ' + str(current_x) + ' ' + str(current_y))
+            
+            try:
+                lawn.get_cell_coord(current_x, current_y).is_passable()
+            except:
+                print('Invalid cause start oob or impassable')
+                output_list.append('INVALID')
+                continue
+            
+            validity = True
+            
+            if not lawn.get_cell_coord(current_x, current_y).is_passable():
+                output_list.append('INVALID')
+                continue
+            else:
+                lawn.get_cell_coord(current_x, current_y).set_tag(CellTags.IMPASSABLE)
             
             for each in path:
                 match each:
@@ -84,30 +99,49 @@ class Level3(AbstractLevel):
                         current_y -= 1
                         if current_y < 0:
                             print('-yLawn: ' + str(i) + ' Invalid at ' + str(current_x) + ',' + str(current_y))
+                            validity = False
                             break
                     case 'D':
                         current_x += 1
                         if current_x >= size[0]:
                             print('+xLawn: ' + str(i) + ' Invalid at ' + str(current_x) + ',' + str(current_y))
+                            validity = False
                             break
                     case 'S':
                         current_y += 1
                         if current_y >= size[1]:
                             print('+yLawn: ' + str(i) + ' Invalid at ' + str(current_x) + ',' + str(current_y))
+                            validity = False
                             break
                     case 'A':
                         current_x -= 1
                         if current_x < 0:
                             print('-xLawn: ' + str(i) + ' Invalid at ' + str(current_x) + ',' + str(current_y))
+                            validity = False
                             break
                     case _:
                         raise Exception('Something went wrong')
-                    
+                
+                print('at ' + str(current_x) + ',' + str(current_y))
                 if not lawn.get_cell_coord(current_x, current_y).is_passable():
                     print('impLawn: ' + str(i) + ' Invalid at ' + str(current_x) + ',' + str(current_y))
+                    validity = False
                     break
                 else:
                     lawn.get_cell_coord(current_x, current_y).set_tag(CellTags.IMPASSABLE)
+            
+            if validity != False:
+                str_list = lawn.get_all_chars()
+                print(str_list)
+                for each in str_list:
+                    if each != 'X':
+                        validity = False
+                        break
+            
+            if validity:
+                output_list.append('VALID')
+            else:
+                output_list.append('INVALID')
             
             # outer_valid = False
             

@@ -24,9 +24,20 @@ class GridAStar:
             self._grid.append(row_x)
     
     def get_cell_coord(self, x: int, y: int):
-        return self._grid[x][y]
+        return self._grid[y][x]
     
     def get_grid(self):
         rows = list()
         for each in self._grid:
             rows.append(each)
+        return rows
+
+    def get_all_chars(self):
+        chars = str()
+        for each in self._grid: #each row
+            for c in each:
+                if c.is_passable():
+                    chars += '.'
+                else:
+                    chars += 'X'
+        return chars

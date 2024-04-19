@@ -15,20 +15,13 @@ class GridAStar:
         for l in lists:
             row_x = list()
             for c in l:
-                if c == 'O':
+                if c == '.':
                     row_x.append(GridCell(CellTags.PASSABLE))
                 elif c == 'X':
                     row_x.append(GridCell(CellTags.IMPASSABLE))
                 else:
-                    print('couldn\'t parse cell (O/X), creating empty')
                     row_x.append(GridCell(CellTags.PASSABLE))
             self._grid.append(row_x)
-                
-            
-        # printing         
-        for r in self._grid:
-            for e in r:
-                print(e, end='')
-            print('')
     
-    
+    def get_cell_coord(self, x: int, y: int):
+        return self._grid[x][y]

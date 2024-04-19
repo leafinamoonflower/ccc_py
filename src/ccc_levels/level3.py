@@ -1,4 +1,7 @@
 from ccc_levels.abstract_level import AbstractLevel
+from ccc_pathfinding.sq_cell import GridCell
+from ccc_pathfinding.sq_astar import GridAStar
+from ccc_pathfinding.cell_tags import CellTags
 
 class Level3(AbstractLevel):
     
@@ -14,39 +17,56 @@ class Level3(AbstractLevel):
         
         output_list = list()
         
-        num_path = int(input_list[0])
+        num_lawns = int(input_list[0])
+        current_line = 1
         
-        for i in range(1, num_path + 1):
-            up_cur = 0
-            right_cur = 0
+        for i in range(num_lawns):
+            size_str = input_list[current_line].split(' ')
+            current_line += 1;
+            size = list()
+            for j in range(len(size_str)):
+                size.append(int(size_str[j]))
             
-            up = 0
-            up_neg = 0
-            right = 0
-            right_neg = 0
+            lawn = GridAStar()
+            rows = list()
+            for j in range(current_line, current_line + size[1]):
+                rows.append(input_list[j])
+                current_line += 1
             
-            for each in input_list[i]:
+            lawn.parseFromList(rows)
+            
+            path = input_list[current_line]
+            current_line += 1
+        
+        
+            print(lawn.get_cell_coord(0, 2).is_passable())
+        
+            current_x = 0
+            current_y = 0
+            
+            valitity = True
+            
+            for each in path:
                 match each:
                     case 'W':
-                        up_cur += 1
-                        if up_cur > up:
-                            up = up_cur
+                        current_x += 1
                     case 'D':
-                        right_cur += 1
-                        if right_cur > right:
-                            right = right_cur
+                        current_y += 1
                     case 'S':
-                        up_cur -= 1
-                        if up_cur < up_neg:
-                            up_neg = up_cur
+                        current_x -= 1
                     case 'A':
-                        right_cur -= 1
-                        if right_cur < right_neg:
-                            right_neg = right_cur
+                        current_y -= 1
                     case _:
                         raise Exception('Something went wrong')
-                
-            output_list.append(str(right - right_neg + 1) + ' ' + str(up - up_neg + 1)) 
+
+                if not lawn.get_cell_coord(current_x, current_y).is_passable():
+                    valitity = False
+                    print('Lawn: ' + str(i) + ' Invalid at ' + str(current_x) + ',' + str(current_y))
+            
+            if valitity:
+                output_list.append('VALID')
+            else:
+                output_list.append('INVALID')
         
         self.file_access.save_file(file, output_list)
         return None

@@ -17,25 +17,36 @@ class Level2(AbstractLevel):
         num_path = int(input_list[0])
         
         for i in range(1, num_path + 1):
-            w = 0
-            d = 0
-            s = 0
-            a = 0
+            up_cur = 0
+            right_cur = 0
+            
+            up = 0
+            up_neg = 0
+            right = 0
+            right_neg = 0
             
             for each in input_list[i]:
                 match each:
                     case 'W':
-                        w += 1
+                        up_cur += 1
+                        if up_cur > up:
+                            up = up_cur
                     case 'D':
-                        d += 1
+                        right_cur += 1
+                        if right_cur > right:
+                            right = right_cur
                     case 'S':
-                        s += 1
+                        up_cur -= 1
+                        if up_cur < up_neg:
+                            up_neg = up_cur
                     case 'A':
-                        a += 1
+                        right_cur -= 1
+                        if right_cur < right_neg:
+                            right_neg = right_cur
                     case _:
                         raise Exception('Something went wrong')
                 
-            output_list.append(str(w) + ' ' + str(d) + ' ' + str(s) + ' ' + str(a))
+            output_list.append(str(right - right_neg + 1) + ' ' + str(up - up_neg + 1)) 
         
         self.file_access.save_file(file, output_list)
         return None

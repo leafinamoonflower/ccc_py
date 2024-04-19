@@ -1,6 +1,3 @@
-# level-files folder in main
-level_files/*
-
 # VSC folder
 .vscode/
 

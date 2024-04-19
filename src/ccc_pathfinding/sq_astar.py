@@ -25,3 +25,8 @@ class GridAStar:
     
     def get_cell_coord(self, x: int, y: int):
         return self._grid[x][y]
+    
+    def get_grid(self):
+        rows = list()
+        for each in self._grid:
+            rows.append(each)

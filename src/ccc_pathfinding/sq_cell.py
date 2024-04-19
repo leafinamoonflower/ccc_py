@@ -47,6 +47,8 @@ class GridCell:
         else:
             return '?'
         
+    def set_tag(self, tag: CellTags):
+        self._tags = tag
     # def addTag(self, tag: CellTags):
     #     if self._tags.count(tag) > 0:
     #         return

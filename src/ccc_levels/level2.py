@@ -16,7 +16,7 @@ class Level2(AbstractLevel):
         num_val = int(input_list[1])
         num_amount = int(input_list[2])
         output_list = list()
-        for i in range(3, 3 + num_cur, 1):
+        for i in range(3, num_cur * 2 + 3, 2):
             val_list = list()
             temp = list(input_list[i].split(' '))
             for j in temp:
@@ -26,19 +26,19 @@ class Level2(AbstractLevel):
             temp = list(input_list[i + 1].split(' '))
             for j in temp:
                 tar_list.append(int(j))
-
-            for j in tar_list:
-                dict_map = {}
-                for t in range(len(val_list)):
-                    dict_map[t] = val_list[t]
-                    
                 
-                for t in range(len(val_list)):
-                    complement = j - dict_map[t]
-                    if complement in dict_map and dict_map[complement] != val_list[t]:
-                        output_list.append(str(t) + ' ' + str(dict_map[complement]))
-                        print(str(j) + ' ' + str(t) + ' ' + str(dict_map[complement]))
-                        break
+            for j in tar_list:
+                found_target = False
+                dict_map = {}
+                
+                n = len(val_list)
+                for t in range(n):
+                    for s in range(t, n):
+                        if val_list[t] + val_list[s] == j and not found_target:
+                            print(str(val_list[t]) + ' ' + str(val_list[s]) + ' ' + str(j))
+                            output_list.append(str(val_list[t]) + ' ' + str(val_list[s]))
+                            found_target = True
+                            break
         
         # TODO: stub
         

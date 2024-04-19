@@ -50,3 +50,31 @@ class FileAccess:
         for i in range(max_length - 1):
             open_file.write(input[i] + '\n')
         open_file.write(input[max_length - 1])
+        
+    def compare_example(self) -> bool:
+        docs_path = Constants.ROOT_DIR + 'docs/level' + str(self._level) + '_example.out'
+        out_path = self._directory + 'output/level' + str(self._level) + '_example.out'
+        
+        if not os.path.exists(docs_path) or not os.path.exists(out_path):
+            raise Exception('could not find required files')
+        else:
+            open_docs = open(docs_path, 'r')
+            open_out = open(out_path, 'r')
+            
+            lines_docs = list()
+            for each in open_docs:
+                lines_docs.append(each.strip())
+                
+            lines_out = list()
+            for each in open_out:
+                lines_out.append(each.strip())
+                
+            if not len(lines_docs) == len(lines_out):
+                return False
+            else:
+                for i in range(len(lines_docs)):
+                    if not lines_docs[i] == lines_out[i]:
+                        return False
+            
+            return True
+                

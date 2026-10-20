@@ -5,8 +5,12 @@ set quiet
 export PYTHONPATH := "./src"
 
 alias solve := solve_singular
+alias s := solve_singular
+alias se := solve_example
+alias sa := solve_all
 alias prepare := prepare_folders
 alias prep := prepare_folders
+alias p := prepare_folders
 
 prepare_folders LEVEL:
 	python src/scripts/prepare_folders.py {{LEVEL}}

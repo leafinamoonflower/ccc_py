@@ -1,10 +1,34 @@
 # ToDo List
 
-Add multiple algorithms:
+## Algorithms
 
-- [ ] A* Algorithm (2D Grid)
-- [ ] A* Algorithm (Hex Grid)
-- [ ] BFS (2D Grid)
+### Search Algorithms
+
+- [ ] Linear Search
+- [ ] Binary Search
+- [ ] Depth First Search
+- [ ] Breadth First Search
+
+### Sorting Algorithms
+
+- [ ] ...
+
+### Graph Algorithms
+
+- [ ] Kruskal's Algorithm
+- [ ] Dijkstra's Algorithm
+- [ ] A-star Algorithm
+- [ ] Flood Fill Algorithm
+- [ ] Lee Algorithm
+
+### Array Algorithms
+
+- [ ] Kadane's Algorithm
+- [ ] Quickselect Algorithm
+
+### Other Algorithms
+
+- [ ] Euclid's Algorithm
 
 Practice Catcoder:
 

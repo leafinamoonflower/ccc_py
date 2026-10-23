@@ -15,37 +15,33 @@ class FileAccess:
         input_dir = self._directory + 'input/'
         output_dir = self._directory + 'output/'
         docs_dir = Constants.DIRECTORY + 'docs/'
-        os.makedirs(input_dir)
-        os.makedirs(output_dir)
+        if not os.path.exists(input_dir):
+            os.makedirs(input_dir)
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
         if not os.path.exists(docs_dir):
             os.makedirs(docs_dir)
      
         
-    def read_file(self, file: int) -> list:
-        if file == 0:
-            path = self._directory + 'input/level' + str(self._level) + '_example.in'
-        elif 0 < file and file < 6:
-            path = self._directory + 'input/level' + str(self._level) + '_' + str(file) + '.in'
-        else:
-            raise Exception("Wrong File-Number")
+    def read_file(self, file: str) -> list:
+        #if file == 0:
+        #    path = self._directory + 'input/level' + str(self._level) + '_example.in'
+        #elif 0 < file and file < 6:
+        #    path = self._directory + 'input/level' + str(self._level) + '_' + str(file) + '.in'
+        #else:
+        #    raise Exception("Wrong File-Number")
         
-        if not os.path.exists(path):
-            raise FileNotFoundError('File ' + path + ' was not found.')
-        open_file = open(path, 'r')
+        if not os.path.exists(file):
+            raise FileNotFoundError('File: ' + file + ' was not found.')
+        open_file = open(file, 'r')
         lines = list()
         for each in open_file:
             lines.append(each.strip())
         return lines
         
     
-    def save_file(self, file: int, input: list) -> None:
-        if file == 0:
-            path = self._directory + 'output/level' + str(self._level) + '_example.out'
-        elif 0 < file and file < 6:
-            path = self._directory + 'output/level' + str(self._level) + '_' + str(file) + '.out'
-        else:
-            raise Exception("Wrong File-Number")
-        
+    def save_file(self, file: str, input: list) -> None:
+        path = self._directory + 'output/' + file.split('/')[-1].replace('in', 'out')
         if os.path.exists(path):
             os.remove(path)
         open_file = open(path, 'a')

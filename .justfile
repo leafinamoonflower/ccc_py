@@ -17,11 +17,11 @@ prepare_folders LEVEL:
 	python src/scripts/prepare_folders.py {{LEVEL}}
 
 extract LEVEL FILE:
-	just prepare_folders LEVEL
+	just prepare_folders {{LEVEL}}
 	python src/scripts/extract.py {{LEVEL}} {{FILE}}
 
-solve_example LEVEL:
-	just solve_singular {{LEVEL}} 0
+solve_example LEVEL FILE:
+	just solve_singular {{LEVEL}} {{FILE}}
 
 solve_singular LEVEL FILE:
 	python src/scripts/solve_singular.py {{LEVEL}} {{FILE}}

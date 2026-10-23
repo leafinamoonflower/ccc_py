@@ -11,24 +11,26 @@ def main():
         print('Incorrect amount of arguments given. Use: \'just extract <LEVEL> <PATH>\'')
         return
 
-    level = arg_list[0]
+    level = int(arg_list[0])
     if type(level) is not int:
+        print(type(level))
         print('Incorrect Level Type given. Use: \'just extract <LEVEL> <PATH>\'')
         return
 
     filename = arg_list[1]
     if type(filename) is not str:
+        print(type(filename))
         print('Incorrect Path given. Use: \'just extract <LEVEL> <PATH>\'')
 
     if filename[0] == '~':
         filename = os.path.expanduser(arg_list[1])
 
-    input_dir = Constants.DIRECTORY + 'level' + str(level) + '/'
+    input_dir = Constants.DIRECTORY + 'level' + str(level) + '/input/'
     docs_dir = Constants.DIRECTORY + 'docs/'
 
     with ZipFile(filename, mode="r") as archive:
         for file in archive.namelist():
-            if file.endswith('.in'):
+            if file.startswith('in'):
                 archive.extract(file, path=input_dir)
             elif file.endswith('.pdf'):
                 archive.extract(file, path=docs_dir)

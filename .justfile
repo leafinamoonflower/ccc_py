@@ -11,9 +11,14 @@ alias sa := solve_all
 alias prepare := prepare_folders
 alias prep := prepare_folders
 alias p := prepare_folders
+alias e := extract
 
 prepare_folders LEVEL:
 	python src/scripts/prepare_folders.py {{LEVEL}}
+
+extract LEVEL FILE:
+	just prepare_folders LEVEL
+	python src/scripts/extract.py {{LEVEL}} {{FILE}}
 
 solve_example LEVEL:
 	just solve_singular {{LEVEL}} 0

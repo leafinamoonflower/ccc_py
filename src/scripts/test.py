@@ -7,21 +7,16 @@ from ccc_pathfinding.sq_astar import GridAStar
 def main():
     arg_list = sys.argv[1:]
     
-    if len(arg_list) != 2:
+    if len(arg_list) != 1:
         print('Incorrect amount of arguments given. Use: \'just solve_singular <LEVEL> <FILE>\'')
         return
+
+    print(type(arg_list[0]))
     
-    level: AbstractLevel = find_level(int(arg_list[0]))
+    #level: AbstractLevel = find_level(int(arg_list[0]))
     
-    file: int = int(arg_list[1])
-    
-    if 0 <= file and file < 6:
-        input = level.file_access.read_file(1)
-        astar = GridAStar()
-        astar.parseFromList(input)
-        
-    else:
-        print('Input for <FILE> was out of bounds.')
+    #else:
+    #    print('Input for <FILE> was out of bounds.')
 
 if __name__ == '__main__':
     main()

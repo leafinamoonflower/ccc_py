@@ -14,8 +14,11 @@ class FileAccess:
     def prepare_folders(self) -> None:
         input_dir = self._directory + 'input/'
         output_dir = self._directory + 'output/'
+        docs_dir = Constants.DIRECTORY + 'docs/'
         os.makedirs(input_dir)
         os.makedirs(output_dir)
+        if not os.path.exists(docs_dir):
+            os.makedirs(docs_dir)
      
         
     def read_file(self, file: int) -> list:

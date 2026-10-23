@@ -9,9 +9,14 @@ class Level1(AbstractLevel):
         
     # ----- methods: -----
     
-    def solve_singular(self, file: int) -> None:
-        input_list = self.file_access.read_file(file)
-        self.file_access.save_file(file, input_list)
+    def solve_singular(self, file: str) -> None:
+        input = self.file_access.read_file(file)
+        out = []
+
+        line = 0
+
+        first = input[line]
+        line += 1
         
-        print('solve_singular() was not implemented yet.')
+        self.file_access.save_file(file, out)
         return None

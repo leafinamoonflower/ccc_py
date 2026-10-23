@@ -12,13 +12,9 @@ def main():
     
     level: AbstractLevel = find_level(int(arg_list[0]))
     
-    file: int = int(arg_list[1])
+    file: str = arg_list[1]
     
-    if 0 <= file and file < 6:
-        level.solve_singular(file)
-    else:
-        print('Input for <FILE> was out of bounds.')
-        
+    level.solve_singular(file)
         
 if __name__ == '__main__':
     main()

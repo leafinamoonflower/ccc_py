@@ -17,6 +17,8 @@ class Level1(AbstractLevel):
 
         first = input[line]
         line += 1
+
+        out.append("Hello World!")
         
         self.file_access.save_file(file, out)
         return None

@@ -24,7 +24,7 @@ class AbstractLevel(ABC):
         pass
     
     def solve_all(self) -> None:
-        level_dir = Constants.DIRECTORY + 'level' + str(self._level) + '/'
+        level_dir = Constants.DIRECTORY + 'level' + str(self._level) + '/input/'
         files = os.listdir(level_dir)
         files = [file for file in files if os.path.isfile(level_dir + '/' + file)]
         for file in files:

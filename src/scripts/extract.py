@@ -10,7 +10,7 @@ def main():
         print('Incorrect amount of arguments given. Use: \'just extract <LEVEL> <PATH>\'')
         return
 
-    level = arg_list[0]
+    level = int(arg_list[0])
     if type(level) is not int:
         print('Incorrect Level Type given. Use: \'just extract <LEVEL> <PATH>\'')
         return
